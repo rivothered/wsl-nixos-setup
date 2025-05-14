@@ -20,6 +20,11 @@ This PowerShell script automates the process of installing and configuring [NixO
 2. Run the script.
 3. Enter the desired new username and password when prompted.
 
+To run the script directly from PowerShell:
+```powershell
+irm https://raw.githubusercontent.com/rivothered/wsl-nixos-setup/refs/heads/main/nixos-wsl-install.ps1 | iex
+```
+
 ## Prerequisites
 
 * Windows 10/11 with WSL2 enabled
