@@ -65,11 +65,19 @@ sed -i 's|wsl\.defaultUser = \".*\";|wsl.defaultUser = \"$newUsername\";|' /etc/
 "@
     wsl -d $distroName -u root -- sh -c $setDefaultUserCmd
 
-    # Step 3: Update configuration.nix and run nixos-rebuild
+    # Step 3: Download devtools.nix and update configuration.nix to include it
+    Write-Output "Downloading devtools.nix and updating configuration.nix..."
+    $addDevtoolsCmd = @"
+curl -o /etc/nixos/devtools.nix https://raw.githubusercontent.com/rivothered/wsl-nixos-setup/refs/heads/main/devtools.nix &&
+sed -i '/<nixos-wsl\\/modules>/a \  ./devtools.nix' /etc/nixos/configuration.nix
+"@
+    wsl -d $distroName -u root -- sh -c $addDevtoolsCmd
+
+    # Step 4: Update configuration.nix and run nixos-rebuild
     Write-Output "Updating NixOS channels and rebuilding the system..."
     wsl -d $distroName -u root -- sh -c "nix-channel --update && nixos-rebuild switch"
 
-    # Step 4: Remove NixOS icon from Windows Terminal
+    # Step 5: Remove NixOS icon from Windows Terminal
     # Current version of NixOS doesn't have a icon, causing a warning on Windows Terminal
     Write-Output "Removing icon from NixOS profile in Windows Terminal..."
     $settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
@@ -96,12 +104,12 @@ sed -i 's|wsl\.defaultUser = \".*\";|wsl.defaultUser = \"$newUsername\";|' /etc/
         Write-Warning "Windows Terminal settings file not found. Skipping icon removal."
     }
 
-    # Step 5: Cleanup - remove the nixos.wsl file
+    # Step 6: Cleanup - remove the nixos.wsl file
     Write-Output "Cleaning up by removing the 'nixos.wsl' file..."
     Remove-Item -Path $outputFile -Force
     Write-Output "'nixos.wsl' file removed successfully."
 
-    # Step 6: Restart the WSL distro
+    # Step 7: Restart the WSL distro
     Write-Output "Restarting WSL distro '$distroName' to apply all changes..."
     wsl -t $distroName
     Start-Sleep -Seconds 2

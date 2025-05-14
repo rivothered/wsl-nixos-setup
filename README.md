@@ -9,10 +9,13 @@ This PowerShell script automates the process of installing and configuring [NixO
 * Downloads the latest `nixos.wsl` release from GitHub
 * Imports the distribution into WSL with a custom name
 * Creates a new user and sets it as the default for WSL
-* Updates `configuration.nix` and runs `nixos-rebuild`
+* Updates configuration.nix with custom modules
+* Automatically includes devtools.nix module
+* Applies system rebuild with nixos-rebuild switch
 * Removes the default `nixos` user
 * Removes icon from Windows Terminal profile to avoid rendering warnings
 * Fully reloads WSL with the new configuration
+* Cleans up temporary files
 
 ## Usage
 
@@ -49,18 +52,22 @@ irm -useb https://raw.githubusercontent.com/rivothered/wsl-nixos-setup/refs/head
 
    * Replaces the line `wsl.defaultUser = "nixos"` with the new username.
 
-4. **Rebuild system configuration**
+4. **Get development tools file `devtools.nix`**
+
+   * Download `devtoolx.nix` from main branch of this repo.
+
+5. **Rebuild system configuration**
 
    * Updates NixOS channels and runs `nixos-rebuild switch`.
 
-5. **Remove icon from Windows Terminal profile**
+6. **Remove icon from Windows Terminal profile**
 
    * Updates `settings.json` to remove the `icon` property for the `NixOS` profile.
 
-6. **Cleanup**
+7. **Cleanup**
 
    * Deletes the downloaded `nixos.wsl` file.
 
-7. **Restart WSL**
+8. **Restart WSL**
 
    * Terminates and reopens the WSL distro to reload environment with the new user.
