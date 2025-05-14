@@ -24,7 +24,7 @@ This PowerShell script automates the process of installing and configuring [NixO
 
 To run the script directly from PowerShell:
 ```powershell
-irm https://raw.githubusercontent.com/rivothered/wsl-nixos-setup/refs/heads/main/nixos-wsl-install.ps1 | iex
+irm -useb https://raw.githubusercontent.com/rivothered/wsl-nixos-setup/refs/heads/main/nixos-wsl-install.ps1 | iex
 ```
 
 ## Prerequisites
