@@ -3,23 +3,19 @@
 {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    # GNU build toolchain extras
-    bison
-    pkg-config
-    gnumake
-    gcc
-    autoconf
-    automake
-    libtool
-
     # Golang
     go
 
-    # Rust
-    rustup
+    # Java
+    temurin-bin
+    maven
+    gradle
 
     # Python
-    pyenv
+    python3Full
+
+    # NodeJS
+    nodejs
 
     # Other tools
     wget
