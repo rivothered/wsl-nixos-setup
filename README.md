@@ -1,0 +1,1 @@
+# wsl-nixos-setup
