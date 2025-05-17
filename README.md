@@ -71,3 +71,15 @@ irm -useb https://raw.githubusercontent.com/rivothered/wsl-nixos-setup/refs/head
 8. **Restart WSL**
 
    * Terminates and reopens the WSL distro to reload environment with the new user.
+
+## Optional Tools
+
+### WSL USB Integration
+
+To enable USB device passthrough for WSL, you can use [WSL USB GUI](https://gitlab.com/alelec/wsl-usb-gui), an optional utility that provides a graphical interface to manage USB device forwarding into your WSL distributions.
+
+- GitLab Repository: [wsl-usb-gui](https://gitlab.com/alelec/wsl-usb-gui)
+- Download the latest version from the [Releases Page](https://gitlab.com/alelec/wsl-usb-gui/-/releases)
+
+This tool can be useful if you need access to USB peripherals (e.g., serial devices, USB drives) within your NixOS WSL environment.
+
