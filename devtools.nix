@@ -16,6 +16,9 @@
     # Golang
     go
 
+    # Terraform
+    terraform
+
     # Java
     temurin-bin
     maven
