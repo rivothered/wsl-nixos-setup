@@ -40,6 +40,7 @@
     wget
     curl
     git
+    gnupg
     pre-commit
   ];
 
