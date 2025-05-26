@@ -3,38 +3,17 @@
 {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    # Rust
-    rustup    
-    gdb
-    gcc
-    gnumake
-    cmake
-    glibc
-    glib
-    libllvm
-
     # Golang
     go
 
     # Terraform
     terraform
 
-    # Java
-    temurin-bin
-    maven
-    gradle
-
     # Python
     python3Full
 
     # NodeJS
     nodejs
-
-    # Microbit (Rust)
-    minicom
-    libunwind
-    probe-rs-tools
-    cargo-binutils
 
     # Other tools
     wget
