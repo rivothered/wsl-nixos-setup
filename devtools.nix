@@ -20,6 +20,7 @@
     curl
     git
     gnupg
+    pinentry-curses
     pre-commit
   ];
 
